@@ -1,0 +1,24 @@
+image: node:14.15.4
+
+cache:
+  paths:
+    - node_modules/
+    - .yarn
+
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip
+    - ./aws/install
+    - yarn install --cache-folder .yarn --network-timeout 100000
+    - cat $REACT_CONF >> .env
+    - yarn run build
+    - aws s3 sync build/ s3://s3-bucket-name --acl public-read
+  environment:
+    name: Stage
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

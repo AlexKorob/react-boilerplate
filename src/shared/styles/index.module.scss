@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  height: 100vh;
+}
+
+button {
+  border: 0;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+:global(body) {
+  padding: 0;
+  margin: 0;
+  font: {
+    family: sans-serif;
+  }
+  background-color: white;
+}
+
+:global(.header) {
+  font: {
+    size: 28px;
+    weight: 500;
+  }
+  color: #444444;
+  letter-spacing: 0.6px;
+}
+
+:global(.container-with-top-border) {
+  margin: {
+    top: 55px;
+  }
+}
+
+:global(a) {
+  text-decoration: unset;
+  color: inherit;
+}
+
+/* scrollbar */
+// for firefox
+:global(*) {
+  scrollbar-color: black transparent;
+  scrollbar-width: thin;
+}
+
+:global(::-webkit-scrollbar) {
+  width: 20px;
+  height: 20px;
+
+  &-thumb {
+    border: 8px solid rgba(0, 0, 0, 0);
+    border-radius: 20px;
+    box-shadow: inset -3px -3px 0 black, inset 1px 1px 0 black;
+
+    &:hover {
+      box-shadow: inset -3px -3px 0 black, inset 1px 1px 0 black;
+    }
+  }
+
+  &-button {
+    display: none;
+  }
+}
+
+/* end scrollbar */
